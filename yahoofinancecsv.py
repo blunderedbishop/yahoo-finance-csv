@@ -10,11 +10,17 @@ class YahooCsv:
     @staticmethod
     def get_csv(symbol, date1, date2, interval="1d", events="history"):
 
-        date1 = datetime.datetime.strptime(date1, '%Y%m%f')
-        date2 = datetime.datetime.strptime(date2, '%Y%m%f')
+        date1 = datetime.strptime(date1, '%Y%m%d')
+        date2 = datetime.strptime(date2, '%Y%m%d')
 
-        payload = {'period1': int(date1.timestamp()),
-                   'period2': int(date2.timestamp()),
+        date1 = date1.replace(tzinfo=timezone.utc)
+        date2 = date2.replace(tzinfo=timezone.utc)
+    
+        date1 = date1.timestamp()
+        date2 = date2.timestamp()
+
+        payload = {'period1': int(date1),
+                   'period2': int(date2),
                    'interval': '1d',
                    'events': 'history',
         }
