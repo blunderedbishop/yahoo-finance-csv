@@ -14,7 +14,7 @@ import yahoofinancecsv
 
 yahoo = yahoofinancecsv.YahooCsv()
 
-df = yahoo.get_csv('MSFT', "20180102", "20190101")
+df = yahoo.get_csv('MSFT', "20180101", "20190101")
 print(df)
 
            Date        Open        High         Low       Close  Adj Close    Volume
