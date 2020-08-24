@@ -1,4 +1,4 @@
-from datetime import strptime, timezone
+from datetime import datetime, timezone
 from io import StringIO
 
 import pandas as pd
@@ -25,7 +25,7 @@ class YahooCsv:
                    'events': 'history',
         }
 
-        csv_request = requests.get(YahooCsv.YAHOO_DOWNLOAD_URL+f'{symbol}', params=payload)
+        csv_request = requests.get(YahooCsv.YAHOO_DOWNLOAD_URL+symbol, params=payload)
         csv_buffer = StringIO(csv_request.text)
         
         csv_dataframe = pd.read_csv(csv_buffer)
