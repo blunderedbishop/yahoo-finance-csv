@@ -28,5 +28,5 @@ class YahooCsv:
         csv_request = requests.get(YahooCsv.YAHOO_DOWNLOAD_URL+symbol, params=payload)
         csv_buffer = StringIO(csv_request.text)
         
-        csv_dataframe = pd.read_csv(csv_buffer, parse_dates=True)
+        csv_dataframe = pd.read_csv(csv_buffer, parse_dates=True, index_col=0)
         return csv_dataframe
