@@ -10,8 +10,8 @@ class YahooCsv:
     @staticmethod
     def get_csv(symbol, date1, date2, interval="1d", events="history"):
 
-        date1 = datetime.strptime(date1, '%Y%m%d')
-        date2 = datetime.strptime(date2, '%Y%m%d')
+        date1 = datetime.strptime(date1, '%Y-%m-%d')
+        date2 = datetime.strptime(date2, '%Y-%m-%d')
 
         date1 = date1.replace(tzinfo=timezone.utc)
         date2 = date2.replace(tzinfo=timezone.utc)
@@ -28,5 +28,5 @@ class YahooCsv:
         csv_request = requests.get(YahooCsv.YAHOO_DOWNLOAD_URL+symbol, params=payload)
         csv_buffer = StringIO(csv_request.text)
         
-        csv_dataframe = pd.read_csv(csv_buffer)
+        csv_dataframe = pd.read_csv(csv_buffer, parse_dates=True)
         return csv_dataframe
